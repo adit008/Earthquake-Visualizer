@@ -115,7 +115,12 @@ function EarthquakeData() {
 
         {selectedEarthquake && (
           <div
-            className="fixed bottom-0 left-0 w-96 h-64 bg-white shadow-lg border-l p-5 overflow-y-auto z-50"
+            className="fixed bottom-0 left-0 
+               w-64 h-36            /* default mobile */
+               sm:w-72 sm:h-48      /* tablet (≥640px) */
+               md:w-[24rem] md:h-54 /* desktop (≥768px) */
+               bg-white shadow-lg border-l p-5 
+               overflow-y-auto z-50"
           >
             <button
               className="text-red-500 font-bold mb-3"
@@ -124,23 +129,23 @@ function EarthquakeData() {
               ✕ Close
             </button>
 
-            <h2 className="text-xl font-bold mb-2">
+            <h2 className="text-xs sm:text-base md:text-lg font-bold mb-2">
               M {selectedEarthquake.properties.mag} –{" "}
               {selectedEarthquake.properties.place}
             </h2>
 
-            <p>
+            <p className="text-xs sm:text-sm md:text-base">
               <strong>Time:</strong>{" "}
               {new Date(selectedEarthquake.properties.time).toLocaleString()}
             </p>
 
-            <p>
+            <p className="text-xs sm:text-sm md:text-base">
               <strong>Location:</strong>{" "}
               {selectedEarthquake.geometry.coordinates[1].toFixed(3)}°N,{" "}
               {selectedEarthquake.geometry.coordinates[0].toFixed(3)}°W
             </p>
 
-            <p>
+            <p className="text-xs sm:text-sm md:text-base">
               <strong>Depth:</strong>{" "}
               {selectedEarthquake.geometry.coordinates[2]} km
             </p>
@@ -149,12 +154,14 @@ function EarthquakeData() {
               href={selectedEarthquake.properties.url}
               target="_blank"
               rel="noreferrer"
-              className="text-blue-600 underline block mt-2"
+              className="text-xs sm:text-sm md:text-base text-blue-600 underline block mt-2"
             >
               More Info (USGS)
             </a>
           </div>
         )}
+
+
 
 
       </div>
